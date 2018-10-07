@@ -1,0 +1,22 @@
+doctype html  
+html  
+  head
+    title= title
+    link(rel='stylesheet' href='node_modules/quill/dist/quill.core.css')
+    link(rel='stylesheet' href='dist/styles.css')
+  body
+    block content
+
+block content  
+  div.container
+    h1= title
+    div.input
+      h2 Editor
+      div.editor
+    div.sidebar
+      h2 Current User Text Selections
+      div.currentTextSelections
+  
+  script(src="node_modules/jquery/dist/jquery.min.js")
+  script(src="node_modules/quill/dist/quill.core.js")
+  script(src="dist/scripts.js")
