@@ -34,6 +34,9 @@ class textSelector {
       } else {
         let text = this.quillInstance.getText(range.index, range.length);
         console.log('User has highlighted: ', text);
+        console.log('Range: ');
+        console.log(range);
+        // this.highlightText(range.index, range.length-1);
         this.showSelectedText(text);
       }
     } else {
@@ -49,6 +52,22 @@ class textSelector {
     }
     numberOfChildren++;
     $( ".currentTextSelections" ).append(`<div class="textSelection"><strong>Selection ${numberOfChildren}</strong><br>${text}</div>`);
+  }
+
+  highlightText(start, end){
+    this.quillInstance.clipboard.addMatcher(Node.TEXT_NODE, function(node, delta) {
+      return new Delta().insert(node.data);
+    });
+    
+    // Interpret a <b> tag as bold
+    this.quillInstance.clipboard.addMatcher('B', function(node, delta) {
+      return delta.compose(new Delta().retain(delta.length(), { bold: true }));
+    });
+
+    this.quillInstance.clipboard.dangerouslyPasteHTML(start, '<span class="highlight"></span', 'user');
+    // this.quillInstance.clipboard.dangerouslyPasteHTML(end, '</span>');
+
+    
   }
 
 }
