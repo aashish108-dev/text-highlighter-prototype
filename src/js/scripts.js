@@ -7,6 +7,7 @@ class textSelector {
   init(){
     this.initEditor();
     this.mouseUpTextSelector();
+    this.clearSelections();
   }
 
   initEditor(){
@@ -54,6 +55,7 @@ class textSelector {
     $( ".currentTextSelections" ).append(`<div class="textSelection"><strong>Selection ${numberOfChildren}</strong><br>${text}</div>`);
   }
 
+  // Does not work as expected plus ran out of time
   highlightText(start, end){
     this.quillInstance.clipboard.addMatcher(Node.TEXT_NODE, function(node, delta) {
       return new Delta().insert(node.data);
@@ -66,8 +68,12 @@ class textSelector {
 
     this.quillInstance.clipboard.dangerouslyPasteHTML(start, '<span class="highlight"></span', 'user');
     // this.quillInstance.clipboard.dangerouslyPasteHTML(end, '</span>');
+  }
 
-    
+  clearSelections(){
+    $('.clearSelections').on('click', function(){
+      $('.currentTextSelections').html('');
+    });
   }
 
 }

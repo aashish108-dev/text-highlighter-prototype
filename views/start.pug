@@ -12,11 +12,13 @@ block content
     h1= title
     div.input
       h2 Editor
+      p Paste your content in the box below.
       div.editor
     div.sidebar
       h2 Current User Text Selections
+      button.clearSelections Clear Selections
       div.currentTextSelections
   
   script(src="node_modules/jquery/dist/jquery.min.js")
-  script(src="node_modules/quill/dist/quill.core.js")
+  script(src="node_modules/quill/dist/quill.min.js")
   script(src="dist/scripts.js")
